@@ -1,18 +1,38 @@
-# Deep Learning From Scratch 
+# Deep Learning From Scratch
 
-This repository documents my 2-month journey to become a strong Deep Learning engineer.
-
-## Structure
-- Day 01 – Linear Regression (from scratch)
-- Day 01 – Linear Regression (nn.Linear)
+This repository documents my 2-month journey to rebuild deep learning foundations from first principles.
 
 ## Goal
-Build deep learning models from first principles and understand every component:
-- Gradients
-- Optimization
-- Loss functions
-- Backpropagation
-- Neural networks
-- Transformers (eventually)
+To become a strong deep learning engineer capable of implementing models from scratch without relying blindly on frameworks.
 
+---
+
+## Week 1 – Foundations
+
+### 1. Linear Regression (From Scratch)
+- Manual forward pass
+- Manual loss (MSE)
+- Manual gradient descent
+- Manual parameter updates
+- Understanding of autograd
+
+### 2. Linear Regression (nn.Module)
+- Using nn.Linear
+- Using optim.SGD
+- Understanding model abstraction
+
+---
+
+## What I Learned
+
+- What is gradient descent
+- What is learning rate
+- What is requires_grad
+- How backward() computes gradients
+- Bias-variance tradeoff
+- Effect of noise on training
+
+---
+
+This repo will grow daily.
 Consistency > Motivation.
