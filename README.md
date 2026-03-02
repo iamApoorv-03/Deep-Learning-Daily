@@ -1,242 +1,88 @@
-Deep Learning Foundations — From Scratch to Mini-Batch Training
-📌 Overview
+# 🧠 Deep Learning Foundations: From Scratch to Mini-Batch
 
-This repository documents my structured journey of building Deep Learning foundations from scratch using PyTorch.
+![PyTorch](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white)
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Status](https://img.shields.io/badge/Status-Active_Development-green?style=for-the-badge)
 
-Instead of copying models blindly, the goal of this project is:
+## 📌 Overview
+This repository documents a structured journey of building **Deep Learning foundations from scratch** using PyTorch. Instead of treating models as black boxes, the goal is to:
 
-Understand optimization mathematically
+* **Understand Optimization:** Deconstruct the mathematics of gradients.
+* **Build Step-by-Step:** Move from raw tensors to high-level APIs.
+* **Scientific Experimentation:** Analyze noise, bias–variance tradeoffs, and overfitting.
+* **Professional Pipelines:** Implement industry-standard training loops.
 
-Build models step-by-step
+---
 
-Experiment with noise, bias–variance, and overfitting
+## 🚀 Evolution Phases
 
-Implement professional training pipelines
+<details open>
+<summary><b>Phase 1 — Linear Regression From Scratch</b></summary>
 
-This repository evolves daily as part of a disciplined coding practice.
+* **Concepts:** Gradient Descent (GD), Learning rate behavior, Mean Squared Error (MSE).
+* **Mechanics:** `requires_grad=True`, `loss.backward()`, manual parameter updates, and gradient zeroing.
+* **Key Insight:** Optimization stability is highly dependent on feature scaling; high learning rates lead to divergence (overshooting).
+</details>
 
-🧱 Phase 1 — Linear Regression From Scratch
-Concepts Covered
+<details>
+<summary><b>Phase 2 — Noise & Bias–Variance Tradeoff</b></summary>
 
-Gradient Descent (GD)
+* **Experiments:** Introduced Gaussian noise to datasets to observe parameter stability.
+* **Key Insight:** Increasing noise increases irreducible error. Overfitting occurs when the model begins to "memorize" this noise rather than the underlying signal.
+</details>
 
-Learning rate behavior
+<details>
+<summary><b>Phase 3 — Polynomial Regression</b></summary>
 
-Loss function (Mean Squared Error)
+* **Experiments:** Added $x^2$ features; implemented feature normalization.
+* **Key Insight:** Feature scaling is critical. Without normalization, gradients explode because the optimization geometry becomes too "stretched."
+</details>
 
-requires_grad=True
+<details>
+<summary><b>Phase 4 — Neural Networks</b></summary>
 
-loss.backward()
+* **Architecture:** `nn.Sequential` with ReLU non-linearity.
+* **Mechanics:** `model.train()` vs `model.eval()`, and `torch.no_grad()` for validation.
+* **Key Insight:** ReLU introduces piecewise linear behavior, allowing the model to fit non-linear patterns.
+</details>
 
-Manual parameter updates
+<details>
+<summary><b>Phase 5 — Mini-Batch Training (DataLoader)</b></summary>
 
-Zeroing gradients
+* **Implementation:** `TensorDataset` and `DataLoader`.
+* **Key Insight:** Batch training introduces "gradient noise" which can actually help in escaping local minima. Average loss per epoch is a more stable metric than total loss.
+</details>
 
-Key Learnings
+<details>
+<summary><b>Phase 6 — Regularization (L2 & Dropout)</b></summary>
 
-High learning rate → overshooting minima
+* **Techniques:** Weight Decay (L2) and Dropout layers.
+* **Key Insight:** Regularization is a tool to trade bias for variance. It is only useful when model capacity significantly exceeds data complexity.
+</details>
 
-Low learning rate → slow convergence
+<details>
+<summary><b>Phase 7 — Overfitting Diagnosis</b></summary>
 
-Gradient computation via autograd
+* **Experiments:** Small data samples vs. high-capacity (512-512) architectures.
+* **Observation:** Evaluation loss divergence is the primary indicator of generalization failure.
+</details>
 
-Optimization stability depends on scaling
+<details open>
+<summary><b>Phase 8 — Professional Enhancements (Current)</b></summary>
 
-📈 Phase 2 — Noise & Bias–Variance Tradeoff
-Experiments
+* **Features:** Early stopping logic, learning curve plotting, and modular train/eval separation.
+* **Goal:** Transforming toy scripts into production-style pipelines.
+</details>
 
-Added Gaussian noise to dataset
+---
 
-Observed effect on:
-
-Loss
-
-Learned parameters
-
-Model stability
-
-Key Learnings
-
-Increasing noise increases irreducible error
-
-Loss increases even if model is correct
-
-Overfitting happens when model memorizes noise
-
-Generalization gap = Train loss − Eval loss
-
-🧮 Phase 3 — Polynomial Regression
-Experiments
-
-Added polynomial features (x²)
-
-Observed training instability
-
-Implemented feature normalization
-
-Key Learnings
-
-Feature scaling is critical for stability
-
-Without normalization, gradients explode
-
-Learning rate interacts with feature magnitude
-
-Optimization geometry matters
-
-🧠 Phase 4 — Neural Networks
-Model Used
-nn.Sequential(
-    nn.Linear(1, hidden_units),
-    nn.ReLU(),
-    nn.Linear(hidden_units, 1)
-)
-Concepts Covered
-
-ReLU non-linearity
-
-Model capacity
-
-Train/test split
-
-model.train() vs model.eval()
-
-torch.no_grad()
-
-Sorting for clean visualization
-
-Key Learnings
-
-ReLU introduces piecewise linear behavior
-
-Larger models increase variance
-
-Normalizing inputs and outputs improves training
-
-Evaluation must be separated from training
-
-📦 Phase 5 — Mini-Batch Training with DataLoader
-Implemented
-
-TensorDataset
-
-DataLoader
-
-Mini-batch Gradient Descent
-
-Average loss tracking per epoch
-
-Key Learnings
-
-Batch training introduces gradient noise
-
-Average loss is more meaningful than total loss
-
-Batch size affects convergence stability
-
-Professional training requires structured pipeline
-
-🛡 Phase 6 — Regularization
-Techniques Tested
-
-L2 Regularization (Weight Decay)
-
-Dropout
-
-Observations
-
-For simple regression dataset:
-
-Base model generalized well
-
-Regularization slightly increased bias
-
-Regularization helps when:
-
-Model capacity >> data complexity
-
-Key Insight
-
-Regularization reduces variance but increases bias.
-
-It is useful only when overfitting is present.
-
-📊 Phase 7 — Overfitting Experiments
-Experiments
-
-Reduced training samples
-
-Increased model size (512-512 architecture)
-
-Increased noise magnitude
-
-Observations
-
-Small data + large model → overfitting
-
-Large noise + high capacity → memorization
-
-Evaluation loss reveals generalization failure
-
-🚀 Phase 8 — Professional Training Enhancements (Current Phase)
-Implemented
-
-Mini-batch training
-
-Train/Eval separation
-
-Loss tracking
-
-Learning curve plotting
-
-Early stopping logic
-
-Why This Matters
-
-This transforms toy scripts into production-style pipelines.
-
-📂 Repository Structure
-
-linear_regression_scratch.py
-
-polynomial_regression.py
-
-neural_network_basic.py
-
-nn_train_test_split.py
-
-nn_l2_dropout.py
-
-nn_minibatch_dataloader.py
-
-🎯 Current Level
-
-After completing these phases, I now understand:
-
-Optimization mechanics
-
-Model capacity & generalization
-
-Bias–variance tradeoff
-
-Regularization behavior
-
-Mini-batch training dynamics
-
-Training stability
-
-Overfitting diagnosis
-
-This repository reflects structured daily improvement toward intermediate-level deep learning proficiency.
-
-📅 Ongoing Plan
-
-Batch size experiments
-
-Early stopping improvements
-
-Optimizer comparisons (SGD vs Adam)
-
-Learning rate scheduling
-
-Model checkpointing
+## 📂 Repository Structure
+```text
+.
+├── linear_regression_scratch.py  # Manual GD & Autograd
+├── polynomial_regression.py      # Feature engineering & scaling
+├── neural_network_basic.py       # Non-linear activations
+├── nn_train_test_split.py        # Validation strategies
+├── nn_l2_dropout.py              # Regularization experiments
+├── nn_minibatch_dataloader.py    # Efficient data pipelines
+└── README.md
