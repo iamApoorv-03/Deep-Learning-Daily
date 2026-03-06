@@ -90,6 +90,23 @@ This repository documents a structured journey of building **Deep Learning found
 </details>
 
 ---
+## Phase 10 — Learning Rate Scheduling 
+
+Learning rate scheduling improves training stability.
+
+Implemented using:
+torch.optim.lr_scheduler.StepLR
+
+
+Purpose:
+
+- Large steps during early training
+- Small steps during fine-tuning
+
+Learning rate decay works together with **early stopping** to produce stable convergence.
+
+---
+
 
 ##  Repository Structure
 ```text
@@ -101,5 +118,6 @@ This repository documents a structured journey of building **Deep Learning found
 ├── nn_l2_dropout.py                   # Regularization experiments
 ├── nn_minibatch_dataloader.py         # Efficient data pipelines
 ├── nn_minibatch_early_stopping.py     # Early stopping & best model checkpointing
+├── nn_lr_scheduler.py                 #
 └── README.md            
 
