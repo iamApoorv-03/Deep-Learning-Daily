@@ -17,7 +17,7 @@ Instead of treating neural networks as black boxes, this project focuses on:
 - Studying **training dynamics through experiments**
 - Building **professional deep learning training pipelines**
 
-The project evolves through progressively complex stages:
+The project evolves through progressively comple stages:
 
 ```
 Linear Regression → Neural Networks → Training Pipelines → Optimization → Classification
