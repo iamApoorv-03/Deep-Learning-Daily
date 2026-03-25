@@ -8,7 +8,7 @@ Original file is located at
 
 #  Activation Function Comparison: Gradient Flow & Training Dynamics
 
-##  Objective
+##  Object
 
 The goal of this notebook is to **systematically compare different activation functions** and understand their impact on:
 
