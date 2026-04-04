@@ -146,7 +146,7 @@ import matplotlib.pyplot as plt
 # simple classification dataset
 N = 200
 X = torch.randn(N,2)
-y = (X[:,0] + X[:,1]>0). # why long?? CrossEntropyLoss requires class labels as integers (LongTensor), not boolean values.
+y = (X[:,0] + X[:,1]>0).long() # why long?? CrossEntropyLoss requires class labels as integers (LongTensor), not boolean values.
 
 # deep neural network creation
 def create_deep_model():
